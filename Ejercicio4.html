@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reorganizar Consonantes y Vocales</title>
+  </head>
+  <body>
+    <!--Crea una función que tomando una cadena de texto como entrada coloque todas 
+    sus consonantes al principio y todas sus vocales al final de la misma, eliminando los blancos.-->
+    <script type="text/javascript">
+      //reorganizaremos la cadena colocando consonantes al principio y vocales al final
+      function reorganizarConsonantesVocales(cadena) {
+        const vocales = "aeiouáéíóúAEIOUÁÉÍÓÚ";
+        let consonantes = "";
+        let soloVocales = "";
+        //quitar espacios en blanco y recorrer la cadena
+        for (let char of cadena.replace(/\s+/g, "")) {
+          if (vocales.includes(char)) {
+            soloVocales += char;
+          } else {
+            consonantes += char;
+          }
+        }
+        return consonantes + soloVocales;
+      }
+      function mostrarResultado() {
+        const cadena = document.getElementById("cadena").value;
+        const resultado = reorganizarConsonantesVocales(cadena);
+        document.getElementById(
+          "resultado"
+        ).textContent = `Resultado: ${resultado}`;
+      }
+    </script>
+    <h1>Reorganizar Consonantes y Vocales</h1>
+    <form>
+      <label for="cadena">Introduce una cadena de texto:</label>
+      <input type="text" id="cadena" name="cadena" size="50" /><br /><br />
+      <input type="button" value="Reorganizar" onclick="mostrarResultado()" />
+    </form>
+    <h2>Resultado:</h2>
+    <p id="resultado"></p>
+  </body>
+</html>

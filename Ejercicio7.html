@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprobar Palíndromo</title>
+</head>
+<body>
+    <!--Desarrolla una función que tomando como entrada una cadena de texto nos devuelva si es o no un palíndromo.-->
+    <script type="text/javascript">
+        //verificamos si una cadena es un palíndromo
+        function esPalindromo(cadena) {
+            const cadenaLimpia = cadena.replace(/\s+/g, '').toLowerCase();
+            const cadenaInvertida = cadenaLimpia.split('').reverse().join('');
+            return cadenaLimpia === cadenaInvertida;
+        }
+        function mostrarResultado() {
+            const cadena = document.getElementById('cadena').value;
+            const resultado = esPalindromo(cadena);
+            document.getElementById('resultado').textContent = 
+                resultado ? `"${cadena}" es un palíndromo.` : `"${cadena}" no es un palíndromo.`;
+        }
+    </script>
+    <h1>Comprobar si una Cadena es un Palíndromo</h1>
+    <form>
+        <label for="cadena">Introduce una cadena de texto:</label>
+        <input type="text" id="cadena" name="cadena" size="50" /><br /><br />
+        <input type="button" value="Comprobar" onclick="mostrarResultado()" />
+    </form>
+    <h2>Resultado:</h2>
+    <p id="resultado"></p>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buscar Subcadena en Cadena</title>
+  </head>
+  <body>
+    <!--Realizar un función que permita localizar todas las apariciones de una subcadena dentro de otra.-->
+    <script type="text/javascript">
+      //encontraremos todas las apariciones de una subcadena dentro de otra
+      function buscarTodasLasApariciones(cadena, subcadena) {
+        let indices = [];
+        let indiceActual = cadena.indexOf(subcadena);
+        while (indiceActual !== -1) {
+          indices.push(indiceActual);
+          indiceActual = cadena.indexOf(subcadena, indiceActual + 1);
+        }
+        return indices;
+      }
+      //mostraremos el resultado en la página
+      function mostrarResultados() {
+        let cadena = document.getElementById("cadena").value;
+        let subcadena = document.getElementById("subcadena").value;
+        const resultados = buscarTodasLasApariciones(cadena, subcadena);
+        if (resultados.length > 0) {
+          document.getElementById(
+            "resultado"
+          ).textContent = `La subcadena aparece en las posiciones: ${resultados.join(
+            ", "
+          )}.`;
+        } else {
+          document.getElementById("resultado").textContent =
+            "La subcadena no se encontró en la cadena principal.";
+        }
+      }
+    </script>
+    <h1>Buscar Subcadena en Cadena</h1>
+    <form>
+      <label for="cadena">Introduce la cadena principal:</label>
+      <input type="text" id="cadena" name="cadena" size="50" /><br /><br />
+      <label for="subcadena">Introduce la subcadena a buscar:</label>
+      <input
+        type="text"
+        id="subcadena"
+        name="subcadena"
+        size="30"
+      /><br /><br />
+      <input type="button" value="Buscar" onclick="mostrarResultados()" />
+    </form>
+    <h2>Resultado:</h2>
+    <p id="resultado"></p>
+  </body>
+</html>

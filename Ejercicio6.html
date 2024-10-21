@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Subcadena en Cadena</title>
+</head>
+<body>
+    <!--Implementa una función que tomando dos cadenas como entrada nos diga si la 
+    segunda es una subcadena de la primera y cuál es la primera posición a partir de la que esto ocurre.-->
+    <script type="text/javascript">
+        function esSubcadena(cadenaPrincipal, subcadena) {
+            let posicion = cadenaPrincipal.indexOf(subcadena);
+            if (posicion !== -1) {
+                return `La subcadena "${subcadena}" se encuentra en la posición ${posicion} de la cadena principal.`;
+            } else {
+                return `La subcadena "${subcadena}" no se encuentra en la cadena principal.`;
+            }
+        }
+        function mostrarResultado() {
+            let cadenaPrincipal = document.getElementById('cadenaPrincipal').value;
+            let subcadena = document.getElementById('subcadena').value;
+            let resultado = esSubcadena(cadenaPrincipal, subcadena);
+            document.getElementById('resultado').textContent = resultado;
+        }
+    </script>
+    <h1>Buscar Subcadena en Cadena Principal</h1>
+    <form>
+        <label for="cadenaPrincipal">Introduce la cadena principal:</label>
+        <input type="text" id="cadenaPrincipal" name="cadenaPrincipal" size="50" /><br /><br />
+        <label for="subcadena">Introduce la subcadena a buscar:</label>
+        <input type="text" id="subcadena" name="subcadena" size="30" /><br /><br />
+        <input type="button" value="Buscar Subcadena" onclick="mostrarResultado()" />
+    </form>
+    <h2>Resultado:</h2>
+    <p id="resultado"></p>
+</body>
+</html>

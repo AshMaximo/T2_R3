@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contar Número de Palabras</title>
+</head>
+<body>
+    <script type="text/javascript">
+        function contarPalabras(cadena) {
+            const palabras = cadena.trim().split(/\s+/);
+            return palabras.length === 1 && palabras[0] === '' ? 0 : palabras.length;
+        }
+        function mostrarResultado() {
+            const cadena = document.getElementById('cadena').value;
+            const numeroPalabras = contarPalabras(cadena);
+            document.getElementById('resultado').textContent = `Número de palabras: ${numeroPalabras}`;
+        }
+    </script>
+    <h1>Contar Número de Palabras en una Cadena</h1>
+    <form>
+        <label for="cadena">Introduce una cadena de texto:</label>
+        <input type="text" id="cadena" name="cadena" size="50" /><br /><br />
+        <input type="button" value="Contar Palabras" onclick="mostrarResultado()" />
+    </form>
+    <h2>Resultado:</h2>
+    <p id="resultado"></p>
+</body>
+</html>

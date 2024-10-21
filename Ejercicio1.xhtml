@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Funciones de Manipulación de Cadenas</title>
+</head>
+<body>
+    <!--Crea las siguientes funciones y llámalas desde una página XHTML para mostrar su funcionamiento:
+a)
+invierteCadena(cad_arg): devuelve invertida una cadena dada por el usuario
+b)
+inviertePalabras(cad_arg): devuelve invertidas las palabras contenidas en la
+cadena.
+c)
+encuentraPalabraMasLarga(cad_arg): para una cadena de caracteres dada devuelve la longitud de la palabra más larga en ella contenida
+d)
+fltraPalabrasMasLargas(cad_arg, i): para una cadena de caracteres y un valor numérico (i), devuelva el número de palabras cuya longitud es mayor a i.
+e)
+cadenaBienFormada(cad_arg): formatea correctamente la cadena pasada, de tal modo que sólo aparece en mayúscula la primera letra y el resto en minúscula.-->
+    <script type="text/javascript">
+        // Función que invierte una cadena
+        function invierteCadena(cad_arg) {
+            return cad_arg.split("").reverse().join("");
+        }
+        //invierte las palabras en una cadena
+        function inviertePalabras(cad_arg) {
+            return cad_arg.split(" ").map(function(palabra) {
+                return palabra.split("").reverse().join("");
+            }).join(" ");
+        }
+        //encuentra la longitud de la palabra más larga
+        function encuentraPalabraMasLarga(cad_arg) {
+            var palabras = cad_arg.split(" ");
+            var maxLongitud = 0;
+            for (var i = 0; i < palabras.length; i++) {
+                if (palabras[i].length > maxLongitud) {
+                    maxLongitud = palabras[i].length;
+                }
+            }
+            return maxLongitud;
+        }
+        //filtra palabras más largas que un valor dado
+        function filtraPalabrasMasLargas(cad_arg, i) {
+            var palabras = cad_arg.split(" ");
+            var contador = 0;
+            for (var j = 0; j < palabras.length; j++) {
+                if (palabras[j].length > i) {
+                    contador++;
+                }
+            }
+            return contador;
+        }
+        //formatea la cadena con la primera letra en mayúscula
+        function cadenaBienFormada(cad_arg) {
+            return cad_arg.charAt(0).toUpperCase() + cad_arg.slice(1).toLowerCase();
+        }
+        //mostraremos los resultados en la página
+        function mostrarResultados() {
+            var cadena = document.getElementById('cadena').value;
+            var valor = parseInt(document.getElementById('valor').value, 10);
+
+            document.getElementById('resultadoInversionCadena').textContent = invierteCadena(cadena);
+            document.getElementById('resultadoInversionPalabras').textContent = inviertePalabras(cadena);
+            document.getElementById('resultadoPalabraMasLarga').textContent = encuentraPalabraMasLarga(cadena);
+            document.getElementById('resultadoPalabrasMasLargas').textContent = filtraPalabrasMasLargas(cadena, valor);
+            document.getElementById('resultadoCadenaBienFormada').textContent = cadenaBienFormada(cadena);
+        }
+    </script>
+    <h1>Funciones de Manipulación de Cadenas</h1>
+    <form>
+        <label for="cadena">Introduce una cadena de texto:</label>
+        <input type="text" id="cadena" name="cadena" size="50" /><br /><br />
+
+        <label for="valor">Introduce un valor numérico:</label>
+        <input type="number" id="valor" name="valor" /><br /><br />
+
+        <input type="button" value="Mostrar Resultados" onclick="mostrarResultados()" />
+    </form>
+
+    <h2>Resultados:</h2>
+    <p><strong>Cadena invertida:</strong> <span id="resultadoInversionCadena"></span></p>
+    <p><strong>Palabras invertidas:</strong> <span id="resultadoInversionPalabras"></span></p>
+    <p><strong>Longitud de la palabra más larga:</strong> <span id="resultadoPalabraMasLarga"></span></p>
+    <p><strong>Número de palabras más largas que el valor dado:</strong> <span id="resultadoPalabrasMasLargas"></span></p>
+    <p><strong>Cadena bien formada:</strong> <span id="resultadoCadenaBienFormada"></span></p>
+</body>
+</html>

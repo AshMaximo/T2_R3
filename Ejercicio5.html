@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eliminar Caracteres Repetidos</title>
+  </head>
+  <body>
+    <!--Desarrolla una función que elimine los caracteres repetidos de una cadena de texto, incluidos los blancos.-->
+    <script type="text/javascript">
+      // Función para eliminar caracteres repetidos de una cadena de texto
+      function eliminarCaracteresRepetidos(cadena) {
+        let resultado = "";
+        for (let char of cadena) {
+          if (!resultado.includes(char)) {
+            resultado += char;
+          }
+        }
+        return resultado;
+      }
+
+      // Función para mostrar el resultado en la página
+      function mostrarResultado() {
+        const cadena = document.getElementById("cadena").value;
+        const resultado = eliminarCaracteresRepetidos(cadena);
+        document.getElementById(
+          "resultado"
+        ).textContent = `Resultado: ${resultado}`;
+      }
+    </script>
+    <h1>Eliminar Caracteres Repetidos</h1>
+    <form>
+      <label for="cadena">Introduce una cadena de texto:</label>
+      <input type="text" id="cadena" name="cadena" size="50" /><br /><br />
+      <input
+        type="button"
+        value="Eliminar Repetidos"
+        onclick="mostrarResultado()"
+      />
+    </form>
+    <h2>Resultado:</h2>
+    <p id="resultado"></p>
+  </body>
+</html>

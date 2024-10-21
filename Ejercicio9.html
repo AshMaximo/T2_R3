@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Validador de Tarjeta de Crédito</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      function validarTarjetaCredito(numeroTarjeta) {
+        if (!/^\d{16}$/.test(numeroTarjeta)) {
+          return false;
+        }
+        const digitosUnicos = new Set(numeroTarjeta);
+        if (digitosUnicos.size < 2) {
+          return false;
+        }
+        let ultimoDigito = parseInt(
+          numeroTarjeta[numeroTarjeta.length - 1],
+          10
+        );
+        if (ultimoDigito % 2 !== 0) {
+          return false;
+        }
+        const sumaDigitos = numeroTarjeta
+          .split("")
+          .reduce((suma, digito) => suma + parseInt(digito, 10), 0);
+        if (sumaDigitos <= 16) {
+          return false;
+        }
+        return true;
+      }
+      function mostrarResultado() {
+        let numeroTarjeta = document.getElementById("numeroTarjeta").value;
+        let esValido = validarTarjetaCredito(numeroTarjeta);
+        document.getElementById("resultado").textContent = esValido
+          ? "Número de tarjeta válido"
+          : "Número de tarjeta inválido";
+      }
+    </script>
+    <h1>Validador de Tarjeta de Crédito</h1>
+    <form>
+      <label for="numeroTarjeta"
+        >Introduce el número de tu tarjeta de crédito:</label
+      >
+      <input
+        type="text"
+        id="numeroTarjeta"
+        name="numeroTarjeta"
+        maxlength="16"
+        size="20"
+      /><br /><br />
+      <input type="button" value="Validar" onclick="mostrarResultado()" />
+    </form>
+    <h2>Resultado:</h2>
+    <p id="resultado"></p>
+  </body>
+</html>

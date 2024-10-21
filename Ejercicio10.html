@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validador de Tarjeta de Crédito Mejorado</title>
+</head>
+<body>
+    <script type="text/javascript">
+        function validarTarjetaCredito2(numeroTarjeta) {
+            //quitar guiones
+            const numeroSinGuiones = numeroTarjeta.replace(/-/g, '');
+            if (!/^\d{16}$/.test(numeroSinGuiones)) {
+                return false;
+            }
+            let digitosUnicos = new Set(numeroSinGuiones);
+            if (digitosUnicos.size < 2) {
+                return false;
+            }
+            let ultimoDigito = parseInt(numeroSinGuiones[numeroSinGuiones.length - 1], 10);
+            if (ultimoDigito % 2 !== 0) {
+                return false;
+            }
+            let sumaDigitos = numeroSinGuiones.split('').reduce((suma, digito) => suma + parseInt(digito, 10), 0);
+            if (sumaDigitos <= 16) {
+                return false;
+            }
+            return true;
+        }
+        function mostrarResultado() {
+            let numeroTarjeta = document.getElementById('numeroTarjeta').value;
+            let esValido = validarTarjetaCredito2(numeroTarjeta);
+            document.getElementById('resultado').textContent = esValido ? 'Número de tarjeta válido' : 'Número de tarjeta inválido';
+        }
+    </script>
+    <h1>Validador de Tarjeta de Crédito Mejorado</h1>
+    <form>
+        <label for="numeroTarjeta">Introduce el número de tu tarjeta de crédito:</label>
+        <input type="text" id="numeroTarjeta" name="numeroTarjeta" maxlength="19" size="20" placeholder="Ej: 1234-5678-9876-5432" /><br><br>
+        <input type="button" value="Validar" onclick="mostrarResultado()" />
+    </form>
+    <h2>Resultado:</h2>
+    <p id="resultado"></p>
+</body>
+</html>

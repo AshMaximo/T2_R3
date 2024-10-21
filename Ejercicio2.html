@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Información de la Cadena de Texto</title>
+</head>
+<body>
+    <!--Definir una función que muestre información sobre una cadena de texto que se le pasa como argumento.
+    A partir de la cadena que se le pasa, la función determina si esa cadena está formada sólo por mayúsculas,
+    sólo por minúsculas o por una mezcla de ambas.-->
+    <h1>Analizar Cadena de Texto</h1>
+    <form>
+        <label for="cadena">Introduce una cadena de texto:</label>
+        <input type="text" id="cadena" name="cadena" size="50" /><br /><br />
+        <input type="button" value="Analizar" onclick="mostrarInformacion()" />
+    </form>
+
+    <h2>Resultado:</h2>
+    <p id="resultado"></p>
+    <script type="text/javascript">
+        //determinaremos si la cadena está formada por mayúsculas, minúsculas o una mezcla
+        function analizarCadena(cadena) {
+            if (cadena === cadena.toUpperCase()) {
+                return "La cadena está formada solo por mayúsculas.";
+            } else if (cadena === cadena.toLowerCase()) {
+                return "La cadena está formada solo por minúsculas.";
+            } else {
+                return "La cadena contiene una mezcla de mayúsculas y minúsculas.";
+            }
+        }
+        function mostrarInformacion() {
+            var cadena = document.getElementById('cadena').value;
+            var resultado = analizarCadena(cadena);
+            document.getElementById('resultado').textContent = resultado;
+        }
+    </script>
+</body>
+</html>
